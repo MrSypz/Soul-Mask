@@ -12,6 +12,7 @@ import software.bernie.geckolib.animatable.client.GeoRenderProvider;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.AnimatableManager;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
+import software.bernie.geckolib.renderer.layer.AutoGlowingGeoLayer;
 import software.bernie.geckolib.util.GeckoLibUtil;
 import sypztep.soulmask.client.render.entity.render.HollowmaskRenderer;
 
@@ -32,7 +33,6 @@ public abstract class MaskItem extends ArmorItem implements GeoItem {
             public <T extends LivingEntity> BipedEntityModel<?> getGeoArmorRenderer(@Nullable T livingEntity, ItemStack itemStack, @Nullable EquipmentSlot equipmentSlot, @Nullable BipedEntityModel<T> original) {
                 if(this.renderer == null)
                     this.renderer = new HollowmaskRenderer();
-
                 return this.renderer;
             }
         });

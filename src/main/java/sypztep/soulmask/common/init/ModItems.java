@@ -49,11 +49,11 @@ public class ModItems {
     }
     private static void itemGroup() {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(content -> {
-//            content.add(ModItems.HALF_HOLLOW_MASK);
-//            content.add(ModItems.HOLLOW_MASK_TIER1);
-//            content.add(ModItems.HOLLOW_MASK_TIER2);
-//            content.add(ModItems.HOLLOW_MASK_TIER3);
-//            content.add(ModItems.HOLLOW_MASK_TIER4);
+            content.add(ModItems.HALF_HOLLOW_MASK);
+            content.add(ModItems.HOLLOW_MASK_TIER1);
+            content.add(ModItems.HOLLOW_MASK_TIER2);
+            content.add(ModItems.HOLLOW_MASK_TIER3);
+            content.add(ModItems.HOLLOW_MASK_TIER4);
 //            content.add(ModItems.VASTO_MASK);
             content.add(ModItems.HOGYOKU);
         });

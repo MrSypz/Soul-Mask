@@ -76,7 +76,7 @@ public class SoulMaskUtil {
     }
     public static void addUseMaskParticle(PlayerEntity player) { //Client Packet
         if (getClient().gameRenderer.getCamera().isThirdPerson() || player != getClient().cameraEntity) {
-            double radius = 1.0 + VizardComponent.getVizard(player).getHogyoku();
+            double radius = 1.0 + VizardUtil.getHogyoku(player);
             for (int i = 0; i < 360; i += 8) { // Increase the step for a smoother rotation
                 double circle = Math.toRadians(i);
                 double x = radius * 0.2 * Math.cos(circle) * 1.5d;
