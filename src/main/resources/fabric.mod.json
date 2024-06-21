@@ -32,7 +32,8 @@
   },
   "custom": {
     "cardinal-components": [
-      "soulmask:vizard"
+      "soulmask:vizard",
+      "soulmask:power"
     ]
   }
 }
