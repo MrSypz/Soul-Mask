@@ -1,0 +1,17 @@
+package sypztep.soulmask.client;
+
+import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.minecraft.client.option.KeyBinding;
+import org.lwjgl.glfw.GLFW;
+import sypztep.soulmask.SoulMaskMod;
+
+public class SoulMaskModClient implements ClientModInitializer {
+    public static final KeyBinding EQUIPMASK_KEYBINDING = KeyBindingHelper.registerKeyBinding(new KeyBinding("key." + SoulMaskMod.MODID + ".equipmask", GLFW.GLFW_KEY_V, "key.categories." + SoulMaskMod.MODID));
+    public static final KeyBinding DEBUG_KEYBINDING = KeyBindingHelper.registerKeyBinding(new KeyBinding("key." + SoulMaskMod.MODID + ".debug", GLFW.GLFW_KEY_Z, "key.categories." + SoulMaskMod.MODID));
+
+    @Override
+    public void onInitializeClient() {
+
+    }
+}

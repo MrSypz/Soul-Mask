@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "soulmask",
+  "version": "${version}",
+  "name": "Soul Mask",
+  "description": "",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/Mrsypz/Soul Mask"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/soulmask/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "sypztep.soulmask.client.SoulMaskModClient"
+    ],
+    "main": [
+      "sypztep.soulmask.SoulMaskMod"
+    ],
+    "cardinal-components-entity": [
+      "sypztep.soulmask.common.init.ModEntityComponents"
+    ]
+  },
+  "mixins": [
+    "soulmask.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "custom": {
+    "cardinal-components": [
+      "soulmask:vizard"
+    ]
+  }
+}
