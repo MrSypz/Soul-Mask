@@ -6,9 +6,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterials;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.animatable.client.GeoRenderProvider;
@@ -16,6 +13,8 @@ import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.AnimatableManager;
 import software.bernie.geckolib.util.GeckoLibUtil;
 import sypztep.soulmask.client.render.entity.render.HollowmaskRenderer;
+import sypztep.soulmask.client.render.entity.render.VastomaskRenderer;
+import sypztep.soulmask.common.init.ModItems;
 
 import java.util.function.Consumer;
 
@@ -30,10 +29,14 @@ public abstract class MaskItem extends ArmorItem implements GeoItem {
     public void createGeoRenderer(Consumer<GeoRenderProvider> consumer) {
         consumer.accept(new GeoRenderProvider() {
             private HollowmaskRenderer renderer;
+
             @Override
             public <T extends LivingEntity> BipedEntityModel<?> getGeoArmorRenderer(@Nullable T livingEntity, ItemStack itemStack, @Nullable EquipmentSlot equipmentSlot, @Nullable BipedEntityModel<T> original) {
                 if(this.renderer == null)
                     this.renderer = new HollowmaskRenderer();
+                else if (itemStack.isOf(ModItems.VASTO_MASK)) {
+                    return new VastomaskRenderer();
+                }
                 return this.renderer;
             }
         });
