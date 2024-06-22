@@ -10,7 +10,7 @@ public class EquipMaskEvent implements ClientTickEvents.EndTick {
     @Override
     public void onEndTick(MinecraftClient client) {
         if (client.player == null) return;
-        if (VizardComponentUtil.canUseMask(client.player) && SoulMaskModClient.EQUIPMASK_KEYBINDING.isPressed())
+        if (VizardComponentUtil.canUseMask(client.player) && SoulMaskModClient.EQUIPMASK_KEYBINDING.wasPressed()) // อย่าลืมเปลี่ยน เป็ฯ isPressed()
             SoulMaskUtil.handleEquipMask(client.player);
     }
 }

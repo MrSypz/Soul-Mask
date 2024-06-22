@@ -11,6 +11,8 @@ base {
 }
 
 repositories {
+    mavenLocal()
+
     //CCA
     maven {
         name = 'Ladysnake Mods'
@@ -51,6 +53,8 @@ dependencies {
     modImplementation "software.bernie.geckolib:geckolib-fabric-${minecraft_version}:${geckolib_version}"
 
     modImplementation "maven.modrinth:midnightlib:${project.midnightlib_version}"
+
+    modImplementation include('com.github.MrSypz:damned:v.1.1.0')
 
 }
 
