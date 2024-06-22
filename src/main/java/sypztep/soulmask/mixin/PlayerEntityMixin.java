@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
-import sypztep.soulmask.common.util.VizardUtil;
+import sypztep.soulmask.common.util.VizardComponentUtil;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin extends LivingEntity{
@@ -23,7 +23,7 @@ public abstract class PlayerEntityMixin extends LivingEntity{
     @ModifyVariable(method = "damage", at = @At("HEAD"), argsOnly = true)
     private float soulmask$HollowCurse(float amount) {
         PlayerEntity player = PlayerEntity.class.cast(this);
-        if (VizardUtil.getHogyoku(player) > 0) //&& !VizardComponent.HasEquipMask(player)
+        if (VizardComponentUtil.getHogyoku(player) > 0) //&& !VizardComponent.HasEquipMask(player)
             return amount * 1.15f; //15% more Damage
         return amount;
     }
