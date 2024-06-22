@@ -11,47 +11,35 @@ import sypztep.soulmask.common.item.MaskItem;
 
 public class SoulMaskUtil {
 
-    private static ItemStack getHeadSlot(LivingEntity living) {
-        return living.getEquippedStack(EquipmentSlot.HEAD);
-    }
-
     public static boolean hasEquippedMask(LivingEntity living) {
         ItemStack stack = living.getEquippedStack(EquipmentSlot.HEAD);
         return stack.getItem() instanceof MaskItem;
     }
 
-    private static boolean hasAnyMask(PlayerEntity player) {
-        for (ItemStack stack : player.getInventory().armor) {
-            if (ModItems.ALL_MASK.contains(stack.getItem())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public static void handleEquipMask(PlayerEntity player) {
-        boolean hasMask = hasAnyMask(player);
+        boolean hasMask = hasEquippedMask(player);
         ItemStack headSlot = player.getEquippedStack(EquipmentSlot.HEAD);
-
+        int emptySlot = player.getInventory().getEmptySlot();
         if (headSlot.isEmpty()) {
-            equipMask(player);
-        } else if (!hasMask) {
-            int emptySlot = player.getInventory().getEmptySlot();
+            equip(player);
+        } else if (hasMask) {
+            unequip(player);
+        } else {
             if (emptySlot >= 0) {
                 player.getInventory().setStack(emptySlot, headSlot);
             } else {
                 player.dropItem(headSlot, true); // Drop the item
             }
-            equipMask(player);
+            equip(player);
         }
     }
 
-    public static void unequipMask(PlayerEntity player) {
+    private static void unequip(PlayerEntity player) {
         player.equipStack(EquipmentSlot.HEAD, ItemStack.EMPTY);
     }
 
-    public static void equipMask(PlayerEntity player) {
-        int rank = VizardUtil.getHogyoku(player);
+    private static void equip(PlayerEntity player) {
+        int rank = VizardComponentUtil.getHogyoku(player);
         ItemStack hollowMask = getItemStack(rank);
         player.equipStack(EquipmentSlot.HEAD, hollowMask);
     }
@@ -63,6 +51,7 @@ public class SoulMaskUtil {
             case 3 -> ModItems.HOLLOW_MASK_TIER2;
             case 4 -> ModItems.HOLLOW_MASK_TIER3;
             case 5 -> ModItems.HOLLOW_MASK_TIER4;
+            case 6 -> ModItems.VASTO_MASK;
             default -> ModItems.HALF_HOLLOW_MASK;
         };
         return new ItemStack(maskItem);
