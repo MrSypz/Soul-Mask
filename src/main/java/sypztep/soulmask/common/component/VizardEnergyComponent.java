@@ -28,16 +28,22 @@ public class VizardEnergyComponent implements AutoSyncedComponent, CommonTicking
         tag.putInt("energy", this.energy);
     }
 
+    @Override
+    public void writeSyncPacket(RegistryByteBuf buf, ServerPlayerEntity recipient) {
+        buf.writeVarInt(this.energy);
+    }
+
+    @Override
+    public void applySyncPacket(RegistryByteBuf buf) {
+        this.energy = buf.readVarInt();
+    }
+
     public static VizardEnergyComponent getComponent(PlayerEntity player) {
         return ModEntityComponents.VIZARD_ENERGY.get(player);
     }
+
     public int getEnergy() {
         return energy;
-    }
-
-    public void setEnergy(int energy) {
-        this.energy = energy;
-        sync();
     }
 
     /**
@@ -46,20 +52,15 @@ public class VizardEnergyComponent implements AutoSyncedComponent, CommonTicking
      */
     @Override
     public void clientTick() {
-        if (VizardComponentUtil.isHasEquipMask(obj) && this.energy > 0)
-            setEnergy(this.energy - 1);
+        boolean hasEquipMask = VizardComponentUtil.isHasEquipMask(this.obj);
+        if (hasEquipMask && this.energy > 0)
+            this.energy--;
         else if (this.energy < 100) {
-            setEnergy(this.energy + 1);
+            this.energy++;
         }
-//        System.out.println("Client: " + obj.getName() + "- " + VizardEnergyComponent.getComponent(obj).getEnergy());
         tick();
     }
-
     @Override
     public void tick() {
-    }
-
-    public void sync() {
-        ModEntityComponents.VIZARD_ENERGY.sync(this.obj);
     }
 }

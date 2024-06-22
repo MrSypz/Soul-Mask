@@ -6,6 +6,8 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterials;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.sound.SoundEvent;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.animatable.client.GeoRenderProvider;
@@ -15,6 +17,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import sypztep.soulmask.client.render.entity.render.HollowmaskRenderer;
 import sypztep.soulmask.client.render.entity.render.VastomaskRenderer;
 import sypztep.soulmask.common.init.ModItems;
+import sypztep.soulmask.common.init.ModSoundEvents;
 
 import java.util.function.Consumer;
 
@@ -23,6 +26,15 @@ public abstract class MaskItem extends ArmorItem implements GeoItem {
 
     public MaskItem(Settings settings) {
         super(ArmorMaterials.NETHERITE, Type.HELMET, settings);
+    }
+    @Override
+    public RegistryEntry<SoundEvent> getEquipSound() {
+        return ModSoundEvents.ENTITY_GENERIC_CHARGE2;
+    }
+
+    @Override
+    public boolean hasGlint(ItemStack stack) {
+        return false;
     }
 
     @Override
@@ -41,6 +53,8 @@ public abstract class MaskItem extends ArmorItem implements GeoItem {
             }
         });
     }
+
+
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {

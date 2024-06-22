@@ -8,7 +8,7 @@ import net.minecraft.client.option.KeyBinding;
 import org.lwjgl.glfw.GLFW;
 import sypztep.soulmask.SoulMaskMod;
 import sypztep.soulmask.client.event.EquipMaskEvent;
-import sypztep.soulmask.client.event.ui.HudRendere;
+import sypztep.soulmask.client.event.hud.EnergyHudEvent;
 
 public class SoulMaskModClient implements ClientModInitializer {
     public static final KeyBinding EQUIPMASK_KEYBINDING = KeyBindingHelper.registerKeyBinding(new KeyBinding("key." + SoulMaskMod.MODID + ".equipmask", GLFW.GLFW_KEY_V, "key.categories." + SoulMaskMod.MODID));
@@ -17,6 +17,6 @@ public class SoulMaskModClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         ClientTickEvents.END_CLIENT_TICK.register(new EquipMaskEvent());
-        HudRenderCallback.EVENT.register(new HudRendere());
+        HudRenderCallback.EVENT.register(new EnergyHudEvent());
     }
 }
