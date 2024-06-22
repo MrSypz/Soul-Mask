@@ -21,7 +21,7 @@ public class ModItems {
     public static HollowMaskItem HOLLOW_MASK_TIER2;
     public static HollowMaskItem HOLLOW_MASK_TIER3;
     public static HollowMaskItem HOLLOW_MASK_TIER4;
-//    public static VastomaskItem VASTO_MASK;
+    public static HollowMaskItem VASTO_MASK;
 //
     public static Item HOGYOKU;
 //
@@ -32,7 +32,7 @@ public class ModItems {
         HOLLOW_MASK_TIER2 = registerMaskItem("hollow_mask_2", new HollowMaskItem(new Item.Settings().maxDamage(60))); //1 Minute
         HOLLOW_MASK_TIER3 = registerMaskItem("hollow_mask_3", new HollowMaskItem(new Item.Settings().maxDamage(180))); // 3 Minute
         HOLLOW_MASK_TIER4 = registerMaskItem("hollow_mask_4", new HollowMaskItem(new Item.Settings().maxDamage(300))); // 5 Minute
-//        VASTO_MASK = registerMaskItem("vasto_mask", new VisoredItem(new Item.Settings().maxDamage(900))); // 15 Minute
+        VASTO_MASK = registerMaskItem("vasto_mask", new HollowMaskItem(new Item.Settings().maxDamage(900))); // 15 Minute
 
         HOGYOKU = registerItem("hogyoku", new HogyokuItem(new Item.Settings().maxCount(1).rarity(Rarity.EPIC)));
 
@@ -54,7 +54,7 @@ public class ModItems {
             content.add(ModItems.HOLLOW_MASK_TIER2);
             content.add(ModItems.HOLLOW_MASK_TIER3);
             content.add(ModItems.HOLLOW_MASK_TIER4);
-//            content.add(ModItems.VASTO_MASK);
+            content.add(ModItems.VASTO_MASK);
             content.add(ModItems.HOGYOKU);
         });
     }
