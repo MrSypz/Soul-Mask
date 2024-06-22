@@ -11,10 +11,8 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import sypztep.soulmask.SoulMaskMod;
-import sypztep.soulmask.common.component.VizardComponent;
-import sypztep.soulmask.common.init.ModEntityComponents;
 import sypztep.soulmask.common.payload.HogyokuPayload;
-import sypztep.soulmask.common.util.VizardUtil;
+import sypztep.soulmask.common.util.VizardComponentUtil;
 
 import java.util.List;
 
@@ -25,7 +23,7 @@ public class HogyokuItem extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack stack = user.getStackInHand(hand);
-        int rank = VizardUtil.getHogyoku(user);
+        int rank = VizardComponentUtil.getHogyoku(user);
         boolean bl = rank < 6;
         if (world.isClient) {
             if (bl) {
