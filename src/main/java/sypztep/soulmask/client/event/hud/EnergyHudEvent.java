@@ -9,7 +9,6 @@ import net.minecraft.util.Identifier;
 import sypztep.soulmask.SoulMaskMod;
 import sypztep.soulmask.client.event.EquipMaskEvent;
 import sypztep.soulmask.common.init.ModEntityComponents;
-import sypztep.soulmask.common.util.SoulMaskUtil;
 import sypztep.soulmask.common.util.VizardComponentUtil;
 
 public class EnergyHudEvent implements HudRenderCallback {
@@ -26,18 +25,9 @@ public class EnergyHudEvent implements HudRenderCallback {
             }
         });
         if (VizardComponentUtil.canUseMask(minecraft.player)) {
-
-            if (EquipMaskEvent.getKeypressed() < 20)
+            if (EquipMaskEvent.getKeypressed() < 20 )
                 renderCooldownBar(drawContext, windowWidth / 2 - 16, windowHeight / 2 + 18, EquipMaskEvent.getKeypressed(), EquipMaskEvent.getDefaultCooldown());
-//            else if (SoulMaskUtil.hasEquippedMask(minecraft.player) && EquipMaskEvent.getUnmaskCooldown() < 20)
-//                renderCooldownBar(drawContext, windowWidth / 2 - 16, windowHeight / 2 + 18, EquipMaskEvent.getUnmaskCooldown(), EquipMaskEvent.getLastunmaskcd());
-
         }
-//        if (VizardComponentUtil.canUseMask(minecraft.player)) {
-        //            else if (SoulMaskUtil.hasEquippedMask(minecraft.player) && MaskHandleTick.getUnmaskCooldown() < 20)
-//                renderCooldownBar(drawContext, windowWidth / 2 - 16, windowHeight / 2 + 18, MaskHandleTick.getUnmaskCooldown(), MaskHandleTick.getLastunmaskcd());
-
-//        }
     }
 
     private void renderCooldownBar(DrawContext drawContext, int x, int y, int max, int current) {
@@ -47,5 +37,4 @@ public class EnergyHudEvent implements HudRenderCallback {
             drawContext.drawTexture(ENERGY, x, y, 0, 0, (int) (33 - (max / (float) current) * 32), 5, 32, 10);
         RenderSystem.disableBlend();
     }
-
 }
