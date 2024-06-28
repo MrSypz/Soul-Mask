@@ -4,7 +4,9 @@
   "version": "${version}",
   "name": "Soul Mask",
   "description": "",
-  "authors": [],
+  "authors": [
+    "Sypztep"
+  ],
   "contact": {
     "repo": "https://github.com/Mrsypz/Soul Mask"
   },
