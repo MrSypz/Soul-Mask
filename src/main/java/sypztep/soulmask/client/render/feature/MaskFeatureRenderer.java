@@ -10,9 +10,9 @@ import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
-import sypztep.soulmask.client.SoulMaskModClient;
 import sypztep.soulmask.client.render.model.MaskModel;
 import sypztep.soulmask.common.init.ModEntityComponents;
+import sypztep.soulmask.common.init.ModFeatures;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -22,7 +22,7 @@ public class MaskFeatureRenderer extends FeatureRenderer<AbstractClientPlayerEnt
 
     public MaskFeatureRenderer(FeatureRendererContext<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> featureRendererContext, EntityRendererFactory.Context loader) {
         super(featureRendererContext);
-        this.models = SoulMaskModClient.MASK_DATA.entrySet().stream()
+        this.models = ModFeatures.MASK_DATA.entrySet().stream()
                 .collect(Collectors.toMap(Map.Entry::getKey, data -> new ResolvedOverheadData(data.getValue().getTexture(), data.getValue().createModel(loader))));
     }
 

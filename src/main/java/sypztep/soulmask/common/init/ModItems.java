@@ -16,7 +16,6 @@ public class ModItems {
     public static Item HOGYOKU;
 //
     public static void init() {
-
         HOGYOKU = registerItem("hogyoku", new HogyokuItem(new Item.Settings().maxCount(1).rarity(Rarity.EPIC)));
         itemGroup();
     }
