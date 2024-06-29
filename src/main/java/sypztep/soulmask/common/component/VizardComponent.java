@@ -48,7 +48,7 @@ public class VizardComponent implements AutoSyncedComponent, CommonTickingCompon
     @Override
     public void clientTick() {
         tick();
-        hasEquipMask = SoulMaskUtil.hasEquippedMask(obj);
+//        hasEquipMask = SoulMaskUtil.hasEquippedMask(obj);
     }
 
     @Override

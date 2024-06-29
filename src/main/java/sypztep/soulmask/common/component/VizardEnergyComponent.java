@@ -14,7 +14,6 @@ import sypztep.soulmask.common.util.VizardComponentUtil;
 public class VizardEnergyComponent implements AutoSyncedComponent, CommonTickingComponent {
     private final PlayerEntity obj;
     private int energy = 100;
-    private boolean hasEquipMask;
 
     public VizardEnergyComponent(PlayerEntity player) {
         this.obj = player;
@@ -43,10 +42,6 @@ public class VizardEnergyComponent implements AutoSyncedComponent, CommonTicking
         ModEntityComponents.VIZARD_ENERGY.sync(this.obj);
     }
 
-    public boolean isHasEquipMask() {
-        return hasEquipMask;
-    }
-
     /**
      * Energy it gonna only handle on client side why?
      * cuz when handle with server it fuck up
@@ -54,8 +49,7 @@ public class VizardEnergyComponent implements AutoSyncedComponent, CommonTicking
     @Override
     public void clientTick() {
         tick();
-        hasEquipMask = VizardComponentUtil.isHasEquipMask(this.obj);
-        if (hasEquipMask && this.energy > 0) {
+        if (VizardComponentUtil.isHasEquipMask(this.obj) && this.energy > 0) {
             EnergyPayload.send(this.obj.getId(), 0);
         } else if (this.energy < 100) {
             EnergyPayload.send(this.obj.getId(), 1);
