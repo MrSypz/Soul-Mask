@@ -9,14 +9,21 @@ import org.jetbrains.annotations.NotNull;
 import sypztep.soulmask.common.init.ModItems;
 
 public class SoulMaskUtil {
-
-
-    private static void unequip(PlayerEntity player) {
-        player.equipStack(EquipmentSlot.HEAD, ItemStack.EMPTY);
+    public static void unequip(PlayerEntity player) {
+        VizardComponentUtil.setEquipMask(player,false);
     }
 
-    private static void equip(PlayerEntity player) {
-        int rank = VizardComponentUtil.getHogyoku(player);
+    public static void equip(PlayerEntity player) {
+        VizardComponentUtil.setEquipMask(player,true);
+    }
+    public static void toggleMask(PlayerEntity player) {
+        boolean isEquipped = VizardComponentUtil.isEquipMask(player); // Check current state
+        if (isEquipped) {
+            unequip(player);
+        } else {
+            equip(player);
+        }
+        VizardComponentUtil.setEquipMask(player, !isEquipped); // Update the state
     }
 
 //    @NotNull

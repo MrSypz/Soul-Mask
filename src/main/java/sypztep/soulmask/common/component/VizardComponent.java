@@ -6,12 +6,11 @@ import net.minecraft.registry.RegistryWrapper;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
 import sypztep.soulmask.common.init.ModEntityComponents;
-import sypztep.soulmask.common.util.SoulMaskUtil;
 
 public class VizardComponent implements AutoSyncedComponent, CommonTickingComponent {
     private final PlayerEntity obj;
     private int hogyoku = 0;
-    private boolean hasEquipMask = false;
+    private boolean equipMask = false;
 
     public VizardComponent(PlayerEntity obj) {
         this.obj = obj;
@@ -19,16 +18,20 @@ public class VizardComponent implements AutoSyncedComponent, CommonTickingCompon
 
     @Override
     public void readFromNbt(NbtCompound tag, RegistryWrapper.WrapperLookup registryLookup) {
-        this.hogyoku = tag.getInt("hogyoku");
+        this.hogyoku = tag.getInt("Hogyoku");
+        this.equipMask = tag.getBoolean("EquipMask");
     }
 
     @Override
     public void writeToNbt(NbtCompound tag, RegistryWrapper.WrapperLookup registryLookup) {
-        tag.putInt("hogyoku",this.hogyoku);
+        tag.putInt("Hogyoku", this.hogyoku);
+        tag.putBoolean("EquipMask", this.equipMask);
     }
+
     public static VizardComponent getComponent(PlayerEntity player) {
         return ModEntityComponents.VIZARD.get(player);
     }
+
     public int getHogyoku() {
         return hogyoku;
     }
@@ -38,9 +41,15 @@ public class VizardComponent implements AutoSyncedComponent, CommonTickingCompon
         sync();
     }
 
-    public boolean isHasEquipMask() {
-        return hasEquipMask;
+    public boolean isEquipMask() {
+        return equipMask;
     }
+
+    public void setEquipMask(boolean equipMask) {
+        this.equipMask = equipMask;
+        sync();
+    }
+
     public void sync() {
         ModEntityComponents.VIZARD.sync(this.obj);
     }
@@ -48,6 +57,7 @@ public class VizardComponent implements AutoSyncedComponent, CommonTickingCompon
     @Override
     public void clientTick() {
         tick();
+        System.out.println(equipMask);
 //        hasEquipMask = SoulMaskUtil.hasEquippedMask(obj);
     }
 

@@ -12,6 +12,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import sypztep.soulmask.client.SoulMaskModClient;
 import sypztep.soulmask.client.render.model.MaskModel;
+import sypztep.soulmask.common.init.ModEntityComponents;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -27,20 +28,20 @@ public class MaskFeatureRenderer extends FeatureRenderer<AbstractClientPlayerEnt
 
     @Override
     public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, AbstractClientPlayerEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
-//		if (cosmeticData != null && !entity.isInvisible()) {
-//			String playerOverhead = cosmeticData.getOverhead();
-//			if (playerOverhead != null) {
-        ResolvedOverheadData resolvedOverheadData = this.models.get("hollow_4");
-        if (resolvedOverheadData != null) {
-            Identifier texture = resolvedOverheadData.texture();
-            MaskModel model = resolvedOverheadData.model();
+        var component = ModEntityComponents.VIZARD.get(entity);
+        if (!entity.isInvisible()) {
+            ResolvedOverheadData resolvedOverheadData = this.models.get("hollow_" + component.getHogyoku());
+            if (resolvedOverheadData != null && component.isEquipMask()) {
+                Identifier texture = resolvedOverheadData.texture();
+                MaskModel model = resolvedOverheadData.model();
 
-            model.head.pivotX = this.getContextModel().head.pivotX;
-            model.head.pivotY = this.getContextModel().head.pivotY;
-            model.head.pitch = this.getContextModel().head.pitch;
-            model.head.yaw = this.getContextModel().head.yaw;
+                model.head.pivotX = this.getContextModel().head.pivotX;
+                model.head.pivotY = this.getContextModel().head.pivotY;
+                model.head.pitch = this.getContextModel().head.pitch;
+                model.head.yaw = this.getContextModel().head.yaw;
 
-            model.render(matrices, vertexConsumers.getBuffer(RenderLayer.getArmorCutoutNoCull(texture)), light, OverlayTexture.DEFAULT_UV);
+                model.render(matrices, vertexConsumers.getBuffer(RenderLayer.getArmorCutoutNoCull(texture)), light, OverlayTexture.DEFAULT_UV);
+            }
         }
     }
 

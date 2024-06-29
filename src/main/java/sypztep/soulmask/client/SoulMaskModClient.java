@@ -38,10 +38,11 @@ public class SoulMaskModClient implements ClientModInitializer {
             }
         });
         MASK_DATA = ImmutableMap.<String, MaskModelData>builder()
-                .put("hollow_1", new MaskModelData(VizardModel::new, "hollow_mask1_armor"))
-                .put("hollow_2", new MaskModelData(VizardModel::new, "hollow_mask2_armor"))
-                .put("hollow_3", new MaskModelData(VizardModel::new, "hollow_mask3_armor"))
-                .put("hollow_4", new MaskModelData(VizardModel::new, "hollow_mask4_armor"))
+                .put("hollow_1", new MaskModelData(VizardModel::new, "hollow_mask_1"))
+                .put("hollow_2", new MaskModelData(VizardModel::new, "hollow_mask_2"))
+                .put("hollow_3", new MaskModelData(VizardModel::new, "hollow_mask_3"))
+                .put("hollow_4", new MaskModelData(VizardModel::new, "hollow_mask_4"))
+                .put("hollow_5", new MaskModelData(VizardModel::new, "hollow_mask_5"))
                 .build();
     }
 }

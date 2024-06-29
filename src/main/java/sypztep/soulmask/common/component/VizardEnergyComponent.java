@@ -2,9 +2,7 @@ package sypztep.soulmask.common.component;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.server.network.ServerPlayerEntity;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
 import sypztep.soulmask.common.init.ModEntityComponents;
@@ -21,12 +19,12 @@ public class VizardEnergyComponent implements AutoSyncedComponent, CommonTicking
 
     @Override
     public void readFromNbt(NbtCompound tag, RegistryWrapper.WrapperLookup registryLookup) {
-        this.energy = tag.getInt("energy");
+        this.energy = tag.getInt("Energy");
     }
 
     @Override
     public void writeToNbt(NbtCompound tag, RegistryWrapper.WrapperLookup registryLookup) {
-        tag.putInt("energy", this.energy);
+        tag.putInt("Energy", this.energy);
     }
 
     public static VizardEnergyComponent getComponent(PlayerEntity player) {
@@ -49,7 +47,7 @@ public class VizardEnergyComponent implements AutoSyncedComponent, CommonTicking
     @Override
     public void clientTick() {
         tick();
-        if (VizardComponentUtil.isHasEquipMask(this.obj) && this.energy > 0) {
+        if (VizardComponentUtil.isEquipMask(this.obj) && this.energy > 0) {
             EnergyPayload.send(this.obj.getId(), 0);
         } else if (this.energy < 100) {
             EnergyPayload.send(this.obj.getId(), 1);

@@ -7,7 +7,6 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -32,7 +31,7 @@ public abstract class InGameHudMixin {
     private void renderWeaponSlot(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci) {
         PlayerEntity player = this.getCameraPlayer();
         if (player != null) {
-            if (ModEntityComponents.VIZARD.get(player).isHasEquipMask()) {
+            if (ModEntityComponents.VIZARD.get(player).isEquipMask()) {
                 int i = context.getScaledWindowWidth() / 3;
                 RenderSystem.enableBlend();
                 //todo: render select skill

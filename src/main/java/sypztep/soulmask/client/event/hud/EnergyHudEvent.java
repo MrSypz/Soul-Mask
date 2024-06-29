@@ -19,7 +19,7 @@ public class EnergyHudEvent implements HudRenderCallback {
         int windowWidth = drawContext.getScaledWindowWidth();
         int windowHeight = drawContext.getScaledWindowHeight();
         ModEntityComponents.VIZARD_ENERGY.maybeGet(MinecraftClient.getInstance().getCameraEntity()).ifPresent(vizardComponent -> {
-            if (vizardComponent.getEnergy() <= 100)
+            if (vizardComponent.getEnergy() <= 100 && VizardComponentUtil.isEquipMask(minecraft.player))
                 renderCooldownBar(drawContext, windowWidth / 2 - 16, windowHeight / 2 + 40, vizardComponent.getEnergy(), 100);
         });
         if (VizardComponentUtil.canUseMask(minecraft.player)) {

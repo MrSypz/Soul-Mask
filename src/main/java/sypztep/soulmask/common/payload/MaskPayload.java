@@ -25,7 +25,7 @@ public record MaskPayload() implements CustomPayload{
         public void receive(MaskPayload payload, ServerPlayNetworking.Context context) {
             if (context.player() == null)
                 return;
-//            SoulMaskUtil.handleEquipMask(context.player());
+            SoulMaskUtil.toggleMask(context.player());
         }
     }
 }

@@ -18,13 +18,13 @@ public class VizardModel extends MaskModel{
         ModelPartData partdefinition = modelData.getRoot();
         ModelPartData Head = partdefinition.addChild("head", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
 
-        ModelPartData mask = Head.addChild("mask", ModelPartBuilder.create().uv(0, 1).cuboid(-4.0F, -9.0F, -4.0F, 8.0F, 11.0F, 0.0F, new Dilation(0.0F))
-                .uv(-1, 0).cuboid(-4.0F, -9.0F, -4.0F, 8.0F, 0.0F, 1.0F, new Dilation(0.0F))
-                .uv(0, 12).cuboid(-4.0F, -9.0F, -4.5F, 8.0F, 8.0F, 0.0F, new Dilation(0.0F))
-                .uv(0, 20).cuboid(-4.0F, -1.0F, -4.5F, 8.0F, 3.0F, 0.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+        ModelPartData mask = Head.addChild("mask", ModelPartBuilder.create().uv(0, 1).cuboid(-4.0F, -33.0F, -5.0F, 8.0F, 11.0F, 0.0F, new Dilation(0.0F))
+                .uv(-1, 0).cuboid(-4.0F, -33.0F, -5.0F, 8.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(0, 12).cuboid(-4.0F, -33.0F, -5.5F, 8.0F, 8.0F, 0.0F, new Dilation(0.0F))
+                .uv(0, 20).cuboid(-4.0F, -25.0F, -5.5F, 8.0F, 3.0F, 0.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 24.0F, 1.0F));
 
-        mask.addChild("mask_outline", ModelPartBuilder.create().uv(16, -2).cuboid(-4.0F, -8.0F, 2.0F, 0.0F, 7.0F, 2.0F, new Dilation(0.0F))
-                .uv(16, -2).cuboid(4.0F, -8.0F, 2.0F, 0.0F, 7.0F, 2.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 3.1416F, 0.0F, -3.1416F));
+        mask.addChild("leftmask_r1", ModelPartBuilder.create().uv(16, -2).cuboid(-4.0F, -8.0F, 2.0F, 0.0F, 7.0F, 2.0F, new Dilation(0.0F))
+                .uv(16, 5).cuboid(4.0F, -8.0F, 2.0F, 0.0F, 7.0F, 2.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, -24.0F, -1.0F, 3.1416F, 0.0F, -3.1416F));
         return TexturedModelData.of(modelData, 32, 32);
     }
 

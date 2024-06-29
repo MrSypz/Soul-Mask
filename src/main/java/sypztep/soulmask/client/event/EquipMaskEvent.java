@@ -2,6 +2,7 @@ package sypztep.soulmask.client.event;
 
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.text.Text;
 import sypztep.soulmask.client.SoulMaskModClient;
 import sypztep.soulmask.common.payload.MaskPayload;
 import sypztep.soulmask.common.util.SoulMaskUtil;
@@ -17,8 +18,10 @@ public class EquipMaskEvent implements ClientTickEvents.EndTick {
 
         if (VizardComponentUtil.canUseMask(client.player) && SoulMaskModClient.EQUIPMASK_KEYBINDING.isPressed() && pressCooldown <= 0)
             handleMaskEquipping(client);
-        else if (SoulMaskModClient.EQUIPMASK_KEYBINDING.wasPressed())
+        else if (SoulMaskModClient.EQUIPMASK_KEYBINDING.wasPressed()) {
             flush();
+            client.player.sendMessage(Text.of("You don't have ability"), true);
+        }
         if (pressCooldown > 0)
             pressCooldown--;
     }
@@ -26,17 +29,11 @@ public class EquipMaskEvent implements ClientTickEvents.EndTick {
     private static void handleMaskEquipping(MinecraftClient client) {
         if (client.player == null)
             return;
-        //Handle particle
-//        if (minecraft.player.age % 5 == 0) {
-////            SoulMaskUtil.addChargeParticle(minecraft.player);
-////            MaskPacket.send(3);
-//        }
         keypressed--;
 
         if (keypressed <= 0) {
             flush();
             MaskPayload.send();
-//            SoulMaskUtil.addUseMaskParticle(minecraft.player);
         }
     }
 
