@@ -12,6 +12,7 @@ import sypztep.soulmask.SoulMaskMod;
 import sypztep.soulmask.client.event.EquipMaskEvent;
 import sypztep.soulmask.client.event.MaskRendererEvent;
 import sypztep.soulmask.client.event.hud.EnergyHudEvent;
+import sypztep.soulmask.client.render.model.VastoModel;
 import sypztep.soulmask.client.render.model.VizardModel;
 
 public class SoulMaskModClient implements ClientModInitializer {
@@ -25,6 +26,7 @@ public class SoulMaskModClient implements ClientModInitializer {
         HudRenderCallback.EVENT.register(new EnergyHudEvent());
 
         EntityModelLayerRegistry.registerModelLayer(VizardModel.MODEL_LAYER, VizardModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(VastoModel.MODEL_LAYER, VastoModel::getTexturedModelData);
         LivingEntityFeatureRendererRegistrationCallback.EVENT.register(new MaskRendererEvent());
     }
 }
