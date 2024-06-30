@@ -11,7 +11,8 @@ import sypztep.soulmask.common.util.VizardComponentUtil;
 
 public class VizardEnergyComponent implements AutoSyncedComponent, CommonTickingComponent {
     private final PlayerEntity obj;
-    private int energy = 100;
+    private int maxEnergy;
+    private int energy;
 
     public VizardEnergyComponent(PlayerEntity player) {
         this.obj = player;
@@ -20,11 +21,13 @@ public class VizardEnergyComponent implements AutoSyncedComponent, CommonTicking
     @Override
     public void readFromNbt(NbtCompound tag, RegistryWrapper.WrapperLookup registryLookup) {
         this.energy = tag.getInt("Energy");
+        this.maxEnergy = tag.getInt("MaxEnergy");
     }
 
     @Override
     public void writeToNbt(NbtCompound tag, RegistryWrapper.WrapperLookup registryLookup) {
         tag.putInt("Energy", this.energy);
+        tag.putInt("MaxEnergy", this.maxEnergy);
     }
 
     public static VizardEnergyComponent getComponent(PlayerEntity player) {
@@ -37,7 +40,19 @@ public class VizardEnergyComponent implements AutoSyncedComponent, CommonTicking
 
     public void setEnergy(int energy) {
         this.energy = energy;
+        sync();
+    }
+    public void sync() {
         ModEntityComponents.VIZARD_ENERGY.sync(this.obj);
+    }
+
+    public int getMaxEnergy() {
+        return maxEnergy;
+    }
+
+    public void setMaxEnergy(int maxEnergy) {
+        this.maxEnergy = maxEnergy;
+        sync();
     }
 
     /**
@@ -48,9 +63,9 @@ public class VizardEnergyComponent implements AutoSyncedComponent, CommonTicking
     public void clientTick() {
         tick();
         if (VizardComponentUtil.isEquipMask(this.obj) && this.energy > 0) {
-            EnergyPayload.send(this.obj.getId(), 0);
-        } else if (this.energy < 100) {
-            EnergyPayload.send(this.obj.getId(), 1);
+            EnergyPayload.send(this.obj.getId(), EnergyPayload.handleEnergy.DRAIN.task());
+        } else if (this.energy < maxEnergy) {
+            EnergyPayload.send(this.obj.getId(), EnergyPayload.handleEnergy.REGEN.task());
         }
     }
 
