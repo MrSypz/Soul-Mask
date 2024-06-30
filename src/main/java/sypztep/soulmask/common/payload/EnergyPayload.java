@@ -8,7 +8,6 @@ import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
 import sypztep.soulmask.common.component.VizardEnergyComponent;
 import sypztep.soulmask.common.init.ModEntityComponents;
-import sypztep.soulmask.common.util.SoulMaskUtil;
 
 public record EnergyPayload(int entityId, int select) implements CustomPayload {
     public static final Id<EnergyPayload> ID = CustomPayload.id("energy_sync");
@@ -41,6 +40,18 @@ public record EnergyPayload(int entityId, int select) implements CustomPayload {
             if (payload.select() == 1) {
                 energyComponent.setEnergy(energyComponent.getEnergy() + 1);
             }
+        }
+    }
+    public enum handleEnergy {
+        DRAIN((byte) 0),
+        REGEN((byte) 1);
+        private final byte flag;
+        handleEnergy(byte flag){
+            this.flag = flag;
+        }
+
+        public byte task() {
+            return flag;
         }
     }
 }
