@@ -18,11 +18,6 @@ repositories {
         name = 'Ladysnake Mods'
         url = 'https://maven.ladysnake.org/releases'
     }
-    //GECKO
-    maven {
-        name = "geckolib"
-        url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven"
-    }
     //MODMENU
     maven {
         name = "TerraformersMC"
@@ -49,13 +44,13 @@ dependencies {
     modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
 
     modRuntimeOnly "maven.modrinth:sodium:${sodium_version}"
-    modImplementation "software.bernie.geckolib:geckolib-fabric-${minecraft_version}:${geckolib_version}"
 
     modImplementation "maven.modrinth:midnightlib:${project.midnightlib_version}"
 
     modImplementation "org.ladysnake:satin:${satin_version}"
     // Include Satin as a Jar-in-Jar dependency (optional)
     include "org.ladysnake:satin:${satin_version}"
+
     modImplementation include('com.github.MrSypz:damned:v.1.1.0')
 
 }
